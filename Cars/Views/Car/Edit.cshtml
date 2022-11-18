@@ -1,0 +1,58 @@
+﻿@model Car
+
+<div class="container shadow p-5">
+    <div class="row pb-2">
+        <h2>Edit Car</h2>
+    </div>
+
+    <form method="post" asp-action="Edit">
+        <div asp-validation-summary="All"></div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label asp-for="Make">Make</label>
+                <input type="text" class="form-control mb-3" asp-for="Make" disabled>
+                <span asp-validation-for="Make" class=" alert-danger"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="Model">Model</label>
+                <input type="text" class="form-control mb-3" asp-for="Model" disabled>
+                <span asp-validation-for="Model" class=" alert-danger"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="Year">Year</label>
+                <input type="number" class="form-control mb-3" asp-for="Year" disabled>
+                <span asp-validation-for="Year" class=" alert-danger"></span>
+            </div>
+            <div class="form-group col-md-6 mb-3">
+                <label asp-for="Doors">Doors</label>
+                <input type="number" class="form-control" asp-for="Doors" disabled>
+                <span asp-validation-for="Doors" class=" alert-danger"></span>
+            </div>
+            <div class="form-group col-md-6 mb-3">
+                <label asp-for="Color">Color</label>
+                <input type="text" class="form-control" asp-for="Color" disabled>
+                <span asp-validation-for="Color" class=" alert-danger"></span>
+            </div>
+            <div class="form-group col-md-6 mb-3">
+                <label asp-for="Price">Price</label>
+                <input type="number" class="form-control" asp-for="Price" disabled>
+                <span asp-validation-for="Price" class=" alert-danger"></span>
+            </div>
+        </div>
+
+
+        <button type="submit" class="btn btn-lg btn-primary p-2"><i class="bi bi-file-plus-fill"></i>Update</button>
+        <a asp-controller="Car" asp-action="Index" class="btn btn-lg btn-warning p-2">Back To List</a>
+    </form>
+
+</div>
+
+
+@*//for front end validations*@
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+    }

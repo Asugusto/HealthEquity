@@ -1,0 +1,101 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model IEnumerable<Car>
+
+@{
+}
+
+<div role="group" class="w-60 btn-group">
+    <a asp-controller="Car" asp-action="Create" class=" btn btn-sm btn-primary"><i class="bi bi-pencil-square"></i>Create</a>&nbsp;
+</div>
+
+<div class="container shadow p-5">
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Make</th>
+                <th scope="col">Model</th>
+                <th scope="col">Year</th>
+                <th scope="col">Doors</th>
+                <th scope="col">Color</th>
+                <th scope="col">Price</th>
+                <th scope="col">Guess</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr id="@item.Id">
+                    <td>
+                        @item.Make
+                    </td>
+                    <td>
+                        @item.Model
+                    </td>
+                    <td>
+                        @item.Year
+                    </td>
+                    <td>
+                        @item.Doors
+                    </td>
+                    <td>
+                        @item.Color
+                    </td>
+                    <td>
+                        <input type="button" class="showOrHide" value="Show Price">
+                        <div style="display: none">@item.Price</div>
+                    </td>
+                    <td>
+                        <input type="number">
+                        <input type="button" class="guess" value="Guess!!!" data-price=@item.Price>
+                    </td>
+                    <td>
+                        <div role="group" class="w-60 btn-group">
+                            <a asp-controller="Car" asp-action="Edit" asp-route-id="@item.Id" class=" btn btn-sm btn-primary"><i class="bi bi-pencil-square"></i>Edit</a>&nbsp;
+                            <a asp-controller="Car" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger"><i class="bi bi-trash-fill"></i>Delete</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <p>
+        Select concat (c.FirstName, ' ', c.LastName) as FullName, c.Age, o.OrderId, o.DateCreated, o.MethodOfPurchase as Purcharse Method, od.ProductNumber, od.ProductOrigin
+        from Customer as c
+        inner join Order as o
+        on c.PersonID = o.PersonID
+        inner join OrderDetails as od
+        on o.OrderId = od.OrderId
+        where od.ProductId = 1112222333
+        </p>
+</div>
+
+@section Scripts
+    {
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $(".showOrHide").click(function () {
+                $(this).next().toggle();
+            });
+
+            $(".guess").click(function () {
+                var guessPrice = $(this).prev().val();
+                if (Math.abs(guessPrice - $(this).data("price")) <= 5000)
+                    alert("Correct!");
+                else
+                    alert("Try again!")
+            });
+
+        });
+
+    </script>
+}
+
+
